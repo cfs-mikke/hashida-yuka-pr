@@ -3,1086 +3,1335 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>橋田ゆうか｜発達でこぼこ相談室</title>
-<meta name="description" content="社会福祉士・子ども発達支援専門家 橋田ゆうかの個人ページ。YouTube「発達でこぼこ相談室」、mond匿名相談、各種SNSへの入り口です。">
-
+<title>橋田ゆうか｜発達特性を持つ子どもと家族のための情報発信</title>
+<meta name="description" content="社会福祉士・発達支援の専門家、橋田ゆうかのプロフィールページ。子どもと家族に関わる情報をYouTubeやLINEで発信中。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-  /* ===========================================================
-     COLOR TOKENS（ラフ案A）
-     会社全体のイメージカラーであるパステルブルー×パステルピンクに
-     揃えた配色。「家庭教師みっけ」のHPと並べても違和感がない方向。
-  =========================================================== */
-  :root{
-    color-scheme: light;
-    --bg:        #F7FAFD;
-    --bg-soft:   #EAF2FA;
-    --bg-card:   #FFFFFF;
-    --ink:       #33414E;
-    --ink-soft:  #6B7785;
-    --ink-faint: #9AA5B1;
-    --gold:      #5B9BD3;
-    --gold-deep: #3D7CB0;
-    --gold-pale: #F3A9C7;
-    --indigo:    #D9698F;
-    --vermil:    #C9527A;
-    --line:      rgba(51,65,78,0.10);
-    --shadow:    0 14px 32px -18px rgba(51,65,78,0.25);
-    --container: 680px;
-  }
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue-light: #A9D2F0;
+  --blue-mid:   #5B9BD3;
+  --blue-dark:  #2E6FA3;
+  --pink-light: #FDE8F0;
+  --pink-mid:   #F5B8D3;
+  --pink-deep:  #D9698F;
+  --warm-white: #FDFAF7;
+  --ink:        #3B3535;
+  --ink-soft:   #6B5F5F;
+  --gold:       #C8944A;
+  --container:  720px;
+  --r-card:     18px;
+  --r-btn:      100px;
+  --shadow-soft: 0 4px 20px rgba(91,155,211,0.12);
+  --shadow-pink: 0 4px 20px rgba(217,105,143,0.15);
+}
 
-  /* ダークモード端末でも強制的にライト表示にする */
-  @media (prefers-color-scheme: dark){
-    :root{
-      color-scheme: light;
-      --bg:        #F7FAFD;
-      --bg-soft:   #EAF2FA;
-      --bg-card:   #FFFFFF;
-      --ink:       #33414E;
-      --ink-soft:  #6B7785;
-      --ink-faint: #9AA5B1;
-      --gold:      #5B9BD3;
-      --gold-deep: #3D7CB0;
-      --gold-pale: #F3A9C7;
-      --indigo:    #D9698F;
-      --vermil:    #C9527A;
-    }
-    html, body{ background: var(--bg) !important; color: var(--ink) !important; }
-  }
+html { scroll-behavior: smooth; }
 
-  *{ box-sizing: border-box; }
+body {
+  font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', sans-serif;
+  background: var(--warm-white);
+  color: var(--ink);
+  line-height: 1.75;
+  font-size: 15px;
+  overflow-x: hidden;
+}
 
+/* ===== AMBIENT BACKGROUND ===== */
+.bg-ambient {
+  position: fixed; inset: 0;
+  z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 10%, rgba(169,210,240,0.20) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 35% at 85% 15%, rgba(245,184,211,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 85%, rgba(169,210,240,0.12) 0%, transparent 70%),
+    var(--warm-white);
+}
 
-  html{ background: var(--bg); }
+/* ===== LAYOUT ===== */
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative; z-index: 1;
+}
 
-  body{
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
-    line-height: 1.85;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
+section { position: relative; overflow: hidden; }
 
-  img, svg{ display:block; max-width:100%; }
+/* ===== BLOB DECORATIONS (per-section) ===== */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+}
+.blob-blue { background: var(--blue-light); }
+.blob-pink { background: var(--pink-mid); }
 
-  a{ color: inherit; text-decoration: none; }
+/* ===== SECTION TITLES ===== */
+.section-label {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.section-label .en {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.section-label h2 {
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.section-label p {
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
 
-  .wrap{
-    max-width: var(--container);
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-  }
+/* ===== DIVIDER ===== */
+.section-divider {
+  width: 48px; height: 3px;
+  background: linear-gradient(90deg, var(--blue-mid), var(--pink-deep));
+  border-radius: 100px;
+  margin: 0 auto 28px;
+}
 
-  /* ===========================================================
-     背景の華やかさ用デコレーション
-     ① ページ全体に固定される、ふわっとしたコーナーの光彩
-     ② 各セクションの背後にスクロールと一緒に流れるパステルの円
-  =========================================================== */
-  .bg-ambient{
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-  }
-  .bg-ambient svg{ width: 100%; height: 100%; display: block; }
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--r-btn);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: transform .18s, box-shadow .18s, opacity .18s;
+  cursor: pointer;
+  border: none;
+}
+.btn:hover { transform: translateY(-2px); opacity: 0.92; }
+.btn-line {
+  background: linear-gradient(135deg, #06C755, #00A843);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(6,199,85,0.35);
+}
+.btn-yt {
+  background: linear-gradient(135deg, #FF3D3D, #CC0000);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(255,61,61,0.30);
+}
+.btn-outline {
+  background: #fff;
+  color: var(--blue-dark);
+  border: 2px solid var(--blue-mid);
+  box-shadow: var(--shadow-soft);
+}
+.btn-pink {
+  background: linear-gradient(135deg, var(--pink-deep), #C4507A);
+  color: #fff;
+  box-shadow: var(--shadow-pink);
+}
 
-  .section-blob{
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(50px);
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.55;
-  }
-  .blob-blue{ background: #A9D2F0; }
-  .blob-pink{ background: #F5B8D3; }
-  .blob-tr{ top: -50px; right: -60px; width: 200px; height: 200px; }
-  .blob-bl{ bottom: -50px; left: -60px; width: 220px; height: 220px; }
-  .blob-tl{ top: -40px; left: -50px; width: 180px; height: 180px; }
-  .blob-br{ bottom: -40px; right: -50px; width: 190px; height: 190px; }
-  .blob-midr{ top: 38%; right: -70px; width: 170px; height: 170px; }
-  .blob-midl{ top: 32%; left: -70px; width: 180px; height: 180px; }
-  @media (max-width: 480px){
-    .section-blob{ filter: blur(38px); opacity: 0.5; transform: scale(0.8); }
-  }
+/* ===== SCROLL FADE ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
 
-  /* ===========================================================
-     凸凹バックグラウンド・テクスチャ（ヒーロー上部）
-  =========================================================== */
-  .texture-top{
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 280px;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .texture-top svg{ width: 100%; height: 100%; }
+/* ===== FLOATING LINE BUTTON ===== */
+.float-line {
+  position: fixed;
+  bottom: 24px;
+  right: 16px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #06C755, #00A843);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 12px 20px 12px 16px;
+  border-radius: 100px;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(6,199,85,0.45);
+  transition: transform .2s, box-shadow .2s;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+.float-line.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.float-line:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(6,199,85,0.5); }
+.float-line-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.float-line-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.float-line-text span:first-child { font-size: 10px; font-weight: 500; opacity: 0.88; }
+.float-line-text span:last-child  { font-size: 13px; font-weight: 800; }
 
-  /* ===========================================================
-     HERO
-  =========================================================== */
-  .hero{
-    position: relative;
-    padding: 96px 0 56px;
-    text-align: center;
-  }
+/* ===== PHOTO PLACEHOLDER ===== */
+.photo-placeholder {
+  background: linear-gradient(135deg, #EBF5FC, #FDE8F0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+  border: 2px dashed var(--blue-light);
+  text-align: center;
+  line-height: 1.5;
+}
+.photo-placeholder .ph-icon { font-size: 28px; opacity: 0.55; }
 
-  .hero-inner{ position: relative; z-index: 1; }
+/* ===============================
+   HERO
+   =============================== */
+#hero {
+  background: linear-gradient(160deg, #EBF5FC 0%, #FDF0F6 60%, #FCF5FF 100%);
+  padding: 60px 0 52px;
+}
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+.hero-avatar-wrap {
+  position: relative;
+  display: inline-block;
+}
+.hero-avatar {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  border: 4px solid #fff;
+  box-shadow: 0 6px 28px rgba(91,155,211,0.22);
+}
+/* Avatar placeholder if image not yet loaded / missing */
+.hero-avatar-ph {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 6px 28px rgba(91,155,211,0.22);
+}
+.hero-badge {
+  position: absolute;
+  bottom: 4px; right: -4px;
+  background: linear-gradient(135deg, var(--pink-deep), #C4507A);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 100px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(217,105,143,0.4);
+}
+.hero-name-block {}
+.hero-name-en {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--blue-mid);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.hero-name-ja {
+  font-size: clamp(26px, 7vw, 36px);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+.hero-tagline {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.85;
+  max-width: 480px;
+  border-left: 3px solid var(--blue-light);
+  padding-left: 14px;
+  text-align: left;
+}
+/* こんな方へ panel */
+.hero-for-you {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 16px;
+  padding: 18px 20px;
+  text-align: left;
+  box-shadow: var(--shadow-soft);
+  border: 1.5px solid rgba(169,210,240,0.45);
+}
+.hero-for-you-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--blue-dark);
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-for-you ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.hero-for-you li {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.55;
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+}
+.hero-for-you li::before {
+  content: '✓';
+  color: var(--blue-mid);
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.hero-credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.cred-chip {
+  background: rgba(255,255,255,0.85);
+  border: 1.5px solid var(--blue-light);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue-dark);
+}
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.hero-cta-note {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: -4px;
+}
 
-  .eyebrow{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    letter-spacing: 0.14em;
-    color: var(--gold-deep);
-    font-weight: 700;
-    margin-bottom: 22px;
-  }
-  .eyebrow::before,
-  .eyebrow::after{
-    content:"";
-    width: 18px;
-    height: 1px;
-    background: var(--gold);
-    opacity: 0.6;
-  }
-
-  .avatar-ring{
-    width: 148px;
-    height: 148px;
-    margin: 0 auto 28px;
-    border-radius: 50%;
-    background: var(--bg-card);
-    border: 2px solid var(--gold-pale);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-photo{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    border-radius: 50%;
-  }
-  .avatar-ring .avatar-initial{
-    font-size: 46px;
-    font-weight: 800;
-    color: var(--gold-deep);
-  }
-  .avatar-note{
-    position: absolute;
-    bottom: -10px;
-    right: -6px;
-    background: var(--gold);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 4px 9px;
-    border-radius: 999px;
-    white-space: nowrap;
-    box-shadow: var(--shadow);
-  }
-
-  .hero h1{
-    font-size: clamp(32px, 7vw, 44px);
-    font-weight: 800;
-    margin: 0 0 6px;
-    letter-spacing: 0.04em;
-  }
-
-  .hero-underline{ width: 180px; height: 14px; margin: 4px auto 18px; }
-
-  .hero-role{
-    font-size: 15px;
-    color: var(--ink-soft);
-    font-weight: 500;
-    margin-bottom: 22px;
-  }
-  .hero-role .dot{ margin: 0 8px; color: var(--ink-faint); }
-
-  .hero-copy{
-    font-size: 16px;
-    color: var(--ink-soft);
-    max-width: 460px;
-    margin: 0 auto;
-  }
-
-  .tag-row{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    margin-top: 24px;
-  }
-  .tag{
-    font-size: 12.5px;
-    padding: 7px 14px;
-    border-radius: 999px;
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    color: var(--ink-soft);
-    font-weight: 500;
-  }
-
-  /* ===========================================================
-     信頼感バッジ（実績・経歴の裏付け）
-  =========================================================== */
-  .trust-row{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px 18px;
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-  }
-  .trust-item{
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--ink-soft);
-    font-weight: 600;
-  }
-  .trust-item svg{ width: 14px; height: 14px; flex-shrink: 0; }
-
-  /* ===========================================================
-     スクロール追従CTA（YouTube登録／mond匿名相談）
-  =========================================================== */
-  .sticky-cta{
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    z-index: 45;
-    display: flex;
-    gap: 10px;
-    padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
-    transform: translateY(120%);
-    transition: transform 0.4s ease;
-    pointer-events: none;
-  }
-  .sticky-cta::before{
-    content: "";
-    position: absolute;
-    inset: -24px 0 0 0;
-    background: linear-gradient(to top, var(--bg) 55%, transparent);
-    z-index: -1;
-  }
-  .sticky-cta.is-visible{ transform: translateY(0); pointer-events: auto; }
-  .sticky-cta-btn{
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 13px 10px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 13px;
-    box-shadow: var(--shadow);
-  }
-  .sticky-cta-btn.primary{ background: var(--gold); color: #fff; }
-  .sticky-cta-btn.secondary{ background: var(--indigo); color: #fff; }
-  .sticky-cta-btn svg{ width: 16px; height: 16px; flex-shrink: 0; }
-  .sticky-cta-btn:active{ transform: scale(0.97); }
-
-  @media (min-width: 600px){
-    .sticky-cta{
-      left: auto;
-      right: 28px;
-      bottom: 28px;
-      max-width: 220px;
-      flex-direction: column;
-      padding: 0;
-    }
-    .sticky-cta::before{ display: none; }
-    .sticky-cta-btn{ font-size: 13.5px; padding: 13px 18px; }
-  }
-
-  /* ===========================================================
-     でこぼこの継ぎ目（パステルブルー×ピンクのリボン風ライン）
-  =========================================================== */
-  /* ===========================================================
-     mond イメージイラスト（操作可能なUIと誤解されないよう、
-     実際の画面を模したモックアップではなくイラストに変更）
-  =========================================================== */
-  .mond-illust-card{
-    background: var(--bg-card);
-    border-radius: 18px;
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-    padding: 18px 18px 16px;
-    margin-bottom: 16px;
-  }
-  .mond-illust-card svg{
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .mond-illust-caption{
-    text-align: center;
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    margin: 10px 0 0;
-    font-weight: 600;
-  }
-
-  /* ===========================================================
-     Instagram フィード埋め込み枠
-  =========================================================== */
-  .insta-feed{
-    border-radius: 18px;
-    overflow: hidden;
-    margin-bottom: 16px;
-    background: var(--bg-soft);
-    min-height: 220px;
-  }
-
-    border: 2px dashed var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-
-  /* ===========================================================
-     STORY（プロフィール詳細・もっと知る）
-  =========================================================== */
-  .story-photo{
-    width: 100%;
-    aspect-ratio: 25/16;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 24px;
-  }
-  .story-photo img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .story-card{
-    background: var(--bg-card);
-    border-radius: 22px;
-    padding: 32px 28px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--line);
-    text-align: left;
-  }
-  .story-card > p{
-    font-size: 14.5px;
-    color: var(--ink-soft);
-    margin: 0 0 14px;
-  }
-  .story-card > p:last-of-type{ margin-bottom: 4px; }
-
-  .story-toggle{
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--gold-deep);
-    font-weight: 700;
-    font-size: 14px;
-    padding: 6px 0;
-    margin-top: 6px;
-    font-family: inherit;
-  }
-  .story-toggle .chev{ width: 16px; height: 16px; transition: transform 0.3s ease; }
-  .story-toggle.is-open .chev{ transform: rotate(180deg); }
-  .story-toggle .label-less{ display: none; }
-  .story-toggle.is-open .label-more{ display: none; }
-  .story-toggle.is-open .label-less{ display: inline; }
-
-  .story-more{
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s ease;
-  }
-  .story-more.is-open{ max-height: 5000px; }
-  .story-more p{
-    font-size: 14.5px;
-    color: var(--ink-soft);
-    margin: 16px 0 0;
-  }
-  .story-more p:first-child{ margin-top: 20px; }
-
-
-  /* ===========================================================
-     SECTION 共通
-  =========================================================== */
-  .section{
-    position: relative;
-    overflow: hidden;
-    padding: 52px 0;
-    opacity: 1;
-    transform: none;
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  /* JSが正常に動いた場合のみ pre-reveal を付与し、フェードインさせる。
-     何らかの理由でJSが動かなくても、コンテンツは最初から見える状態を保つ。 */
-  .section.pre-reveal{ opacity: 0; transform: translateY(18px); }
-  .section.is-visible{ opacity: 1; transform: translateY(0); }
-
-  .section-head{ text-align: center; margin-bottom: 28px; }
-  .section-head .eyebrow{ margin-bottom: 14px; }
-  .section-head h2{
-    font-size: clamp(22px, 5vw, 28px);
-    font-weight: 800;
-    margin: 0 0 12px;
-  }
-  .section-head p{
-    color: var(--ink-soft);
-    font-size: 15px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .card{
-    background: var(--bg-card);
-    border-radius: 22px;
-    padding: 34px 28px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--line);
-    text-align: center;
-  }
-
-  .icon-circle{
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    margin: 0 auto 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .icon-circle svg{ width: 26px; height: 26px; }
-
-  .badge{
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(91,155,211,0.14);
-    color: var(--gold-deep);
-    font-size: 12.5px;
-    font-weight: 700;
-    padding: 7px 16px;
-    border-radius: 999px;
-    margin-bottom: 18px;
-  }
-
-  .btn{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 30px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 15px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    margin-top: 6px;
-  }
-  .btn-primary{
-    background: var(--gold);
-    color: #fff;
-    box-shadow: 0 10px 24px -10px rgba(91,155,211,0.55);
-  }
-  .btn-secondary{
-    background: var(--indigo);
-    color: #fff;
-    box-shadow: 0 10px 24px -10px rgba(217,105,143,0.45);
-  }
-  .btn-ghost{
-    background: transparent;
-    color: var(--ink-soft);
-    border: 1px solid var(--line);
-    font-size: 13.5px;
-    padding: 10px 20px;
-  }
-  .btn:hover{ transform: translateY(-3px); }
-  .btn svg{ width: 17px; height: 17px; }
-
-  .sub-note{
-    font-size: 12.5px;
-    color: var(--ink-faint);
-    margin-top: 14px;
-  }
-
-  /* ===========================================================
-     動画プレビュー（① 代表動画＝埋め込み再生／② その他＝サムネイル+リンク）
-  =========================================================== */
-  .video-featured{
-    aspect-ratio: 16/9;
-    border-radius: 18px;
-    overflow: hidden;
-    margin-bottom: 14px;
-    background: var(--bg-soft);
-    position: relative;
-  }
-  .video-featured.shorts{
-    aspect-ratio: 9/16;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .video-featured.placeholder{
-    border: 2px dashed var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .video-featured iframe{ width: 100%; height: 100%; border: none; display:block; }
-  .video-ph{ text-align: center; color: var(--ink-faint); padding: 0 20px; }
-  .video-ph svg{ width: 30px; height: 30px; margin: 0 auto 10px; }
-  .video-ph p{ font-weight: 700; font-size: 13.5px; margin: 0 0 4px; color: var(--ink-soft); }
-  .video-ph span{ font-size: 11px; }
-
-  .video-grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 22px;
-  }
-  .video-thumb{
-    aspect-ratio: 16/9;
-    border-radius: 11px;
-    background-size: cover;
-    background-position: center;
-    background-color: var(--bg-soft);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .video-thumb.placeholder{ border: 1.5px dashed var(--line); }
-  .video-thumb.placeholder span{ font-size: 10.5px; color: var(--ink-faint); font-weight: 600; }
-  .video-thumb:not(.placeholder)::after{
-    content:"";
-    position:absolute; inset:0;
-    background: rgba(0,0,0,0.18);
-    border-radius: 11px;
-  }
-  .video-thumb:not(.placeholder)::before{
-    content:"▶";
-    position:absolute;
-    color:#fff;
-    font-size: 13px;
-    z-index: 2;
-  }
-
-  /* ===========================================================
-     家庭教師HP（補足セクション・控えめ）
-  =========================================================== */
-  .footer-note{
-    padding: 36px 0 8px;
-    text-align: center;
-  }
-  .footer-note .card{
-    background: transparent;
-    box-shadow: none;
-    border: 1px dashed var(--line);
-    padding: 26px 24px;
-  }
-  .footer-note h3{
-    font-size: 15px;
-    font-weight: 700;
-    margin: 0 0 8px;
-    color: var(--ink-soft);
-  }
-  .tutor-logo-img{
-    width: 100%;
-    max-width: 220px;
-    height: auto;
-    margin: 4px auto 12px;
-  }
-  .footer-note p{
-    font-size: 13.5px;
-    color: var(--ink-faint);
-    margin: 0 0 14px;
-  }
-  .status-pill{
-    display: inline-block;
-    font-size: 11.5px;
-    font-weight: 700;
-    color: var(--vermil);
-    background: rgba(201,82,122,0.12);
-    padding: 4px 12px;
-    border-radius: 999px;
-    margin-bottom: 12px;
-  }
-
-  footer{
-    text-align: center;
-    padding: 40px 0 56px;
-    font-size: 12px;
-    color: var(--ink-faint);
-  }
-  .footer-inner{
-    display: flex;
+/* ===============================
+   STORY — わたしのこと
+   =============================== */
+#story {
+  padding: 64px 0;
+  background: linear-gradient(160deg, #FFF8F0 0%, #EBF5FC 100%);
+}
+.story-card {
+  background: rgba(255,255,255,0.82);
+  border-radius: 24px;
+  padding: 32px 24px;
+  box-shadow: var(--shadow-soft);
+  border: 1.5px solid rgba(169,210,240,0.3);
+}
+/* Photo + text layout */
+.story-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+.story-portrait-wrap {
+  flex-shrink: 0;
+  width: 140px;
+}
+.story-portrait {
+  width: 140px;
+  border-radius: 18px;
+  object-fit: cover;
+  object-position: top;
+  box-shadow: 0 4px 18px rgba(91,155,211,0.18);
+  display: block;
+}
+.story-portrait-ph {
+  width: 140px;
+  height: 180px;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(91,155,211,0.18);
+}
+.story-photo-caption {
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+}
+.story-body {
+  flex: 1;
+  min-width: 0;
+}
+/* On small screens: stack vertically */
+@media (max-width: 520px) {
+  .story-layout {
     flex-direction: column;
     align-items: center;
-    gap: 8px;
   }
-  .npo-logo-img{
-    width: 64px;
-    height: auto;
-    opacity: 0.85;
+  .story-portrait-wrap { width: 100%; }
+  .story-portrait, .story-portrait-ph {
+    width: 100%;
+    height: 200px;
   }
-  .footer-inner p{ margin: 0; }
+}
+.story-text {
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 2;
+}
+.story-text p { margin-bottom: 16px; }
+.story-text p:last-child { margin-bottom: 0; }
+.story-highlight {
+  margin: 20px 0;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(169,210,240,0.18), rgba(245,184,211,0.12));
+  border-left: 4px solid var(--blue-mid);
+  border-radius: 0 14px 14px 0;
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.85;
+  font-weight: 700;
+}
+/* Bottom photo row */
+.story-photo-row-bottom {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+.story-photo-thumb {
+  flex: 1;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+.story-photo-thumb-ph {
+  flex: 1;
+  height: 100px;
+  border-radius: 12px;
+}
 
-  @media (max-width: 599px){
-    footer{ padding-bottom: 116px; }
-  }
+/* ===== LOGO ROW ===== */
+.logo-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.logo-row img {
+  height: 44px;
+  object-fit: contain;
+  opacity: 0.85;
+}
 
-  @media (max-width: 480px){
-    .hero{ padding: 72px 0 40px; }
-    .card{ padding: 28px 20px; }
-  }
+/* ===============================
+   KODOMOTACHI — 教え子の変化
+   =============================== */
+#kodomo {
+  padding: 64px 0;
+  background: #fff;
+}
+.kodomo-intro {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.85;
+  max-width: 480px;
+  margin: 0 auto 36px;
+}
+
+/* カードグリッド */
+.change-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+.change-card {
+  background: linear-gradient(135deg, #F7FBFF 0%, #FFF0F6 100%);
+  border-radius: var(--r-card);
+  padding: 20px 22px;
+  border-left: 4px solid var(--blue-mid);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+.change-card.pink-accent {
+  border-left-color: var(--pink-deep);
+  background: linear-gradient(135deg, #FFF0F6 0%, #F7FBFF 100%);
+}
+.change-card::before {
+  content: '';
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(169,210,240,0.18);
+}
+.change-card.pink-accent::before {
+  background: rgba(245,184,211,0.22);
+}
+.change-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.change-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+.change-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  background: rgba(169,210,240,0.35);
+  padding: 2px 10px;
+  border-radius: 100px;
+}
+.change-card.pink-accent .change-tag {
+  color: var(--pink-deep);
+  background: rgba(245,184,211,0.35);
+}
+.change-before-after {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.change-before, .change-after {
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.change-before {
+  background: rgba(200,200,200,0.18);
+  color: var(--ink-soft);
+}
+.change-after {
+  background: linear-gradient(135deg, rgba(169,210,240,0.4), rgba(245,184,211,0.3));
+  color: var(--ink);
+}
+.change-arrow {
+  font-size: 16px;
+  color: var(--gold);
+  font-weight: 700;
+}
+.change-desc {
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.75;
+}
+.change-quote {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+  padding-left: 10px;
+  border-left: 2px solid var(--pink-mid);
+}
+
+.kodomo-note {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* ===============================
+   YOUTUBE
+   =============================== */
+#youtube {
+  padding: 64px 0;
+  background: linear-gradient(160deg, #EBF5FC 0%, #F8F0FD 100%);
+}
+.yt-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.video-featured {
+  width: 100%;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  background: #111;
+}
+.video-featured.shorts {
+  aspect-ratio: 9/16;
+  max-width: 280px;
+}
+.video-featured:not(.shorts) {
+  aspect-ratio: 16/9;
+}
+.video-featured iframe {
+  width: 100%; height: 100%;
+  border: none; display: block;
+}
+.video-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a2e;
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
+.yt-cta-text {
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ===============================
+   LINE — 3大特典
+   =============================== */
+#line {
+  padding: 64px 0;
+  background: #fff;
+}
+.line-card {
+  background: linear-gradient(135deg, #E8F8F0 0%, #D4F0E3 100%);
+  border-radius: 24px;
+  padding: 36px 28px;
+  text-align: center;
+  border: 2px solid rgba(6,199,85,0.25);
+  box-shadow: 0 8px 32px rgba(6,199,85,0.12);
+  position: relative;
+  overflow: hidden;
+}
+.line-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(6,199,85,0.08);
+}
+.line-icon-big {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.line-card-title {
+  font-size: clamp(18px, 5vw, 22px);
+  font-weight: 800;
+  color: #0A6E3B;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.line-card-sub {
+  font-size: 13px;
+  color: #2D7A52;
+  margin-bottom: 24px;
+}
+
+/* 特典リスト */
+.tokuten-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+.tokuten-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255,255,255,0.75);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.tokuten-num {
+  width: 28px; height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #06C755, #00A843);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tokuten-text {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.tokuten-text small {
+  display: block;
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.line-note {
+  font-size: 11px;
+  color: #4A8A65;
+  margin-top: 12px;
+}
+
+/* ===============================
+   MOND（質問箱）
+   =============================== */
+#mond {
+  padding: 64px 0;
+  background: linear-gradient(160deg, #F8F0FD 0%, #EBF5FC 100%);
+}
+.mond-card {
+  background: linear-gradient(135deg, #F3EAFF 0%, #EBF5FC 100%);
+  border-radius: 24px;
+  padding: 36px 28px;
+  text-align: center;
+  border: 1.5px solid rgba(169,210,240,0.5);
+  box-shadow: var(--shadow-soft);
+}
+.mond-emoji { font-size: 44px; margin-bottom: 12px; }
+.mond-title {
+  font-size: clamp(17px, 4.5vw, 21px);
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.mond-desc {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.85;
+  max-width: 440px;
+  margin: 0 auto 24px;
+}
+.mond-url {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+  word-break: break-all;
+}
+
+/* ===============================
+   INSTAGRAM
+   =============================== */
+#insta {
+  padding: 64px 0;
+  background: linear-gradient(160deg, #FDF0F6 0%, #EBF5FC 100%);
+}
+.insta-handle {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.insta-handle a {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--pink-deep);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.insta-handle a:hover { text-decoration: underline; }
+
+/* ===============================
+   FOOTER / TUTORING CTA
+   =============================== */
+#footer-cta {
+  padding: 56px 0 40px;
+  background: linear-gradient(160deg, #1E3A5F 0%, #2C1A3A 100%);
+  color: #fff;
+  text-align: center;
+}
+.footer-cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.footer-logo {
+  height: 52px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+.footer-cta-text h3 {
+  font-size: clamp(18px, 5vw, 22px);
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-cta-text p {
+  font-size: 13px;
+  opacity: 0.8;
+  line-height: 1.8;
+  max-width: 400px;
+}
+.footer-divider {
+  width: 40px; height: 2px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 100px;
+}
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 8px;
+}
+.footer-nav a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 12px;
+}
+.footer-nav a:hover { color: #fff; }
+.footer-copy {
+  font-size: 11px;
+  opacity: 0.45;
+  margin-top: 4px;
+}
+
+/* ===============================
+   UTILITY
+   =============================== */
+.text-center { text-align: center; }
+.mt-8  { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
 </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
+<!-- 固定背景 -->
+<div class="bg-ambient" aria-hidden="true"></div>
 
-<!-- ページ全体にふわっと漂う、固定位置のコーナー光彩（背景の寂しさ対策） -->
-<div class="bg-ambient" aria-hidden="true">
-  <svg viewBox="0 0 420 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="ambientBlur" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="55"/>
-      </filter>
-    </defs>
-    <circle cx="400" cy="60" r="170" fill="#9FCBEF" opacity="0.55" filter="url(#ambientBlur)"/>
-    <circle cx="10" cy="850" r="190" fill="#F5AFCF" opacity="0.5" filter="url(#ambientBlur)"/>
-    <circle cx="20" cy="380" r="120" fill="#F5D8E6" opacity="0.3" filter="url(#ambientBlur)"/>
-  </svg>
-</div>
+<!-- フローティング LINE ボタン -->
+<a href="https://lin.ee/URQG6Rp" target="_blank" rel="noopener" class="float-line" id="floatLine" aria-label="公式LINEに登録する">
+  <span class="float-line-icon">💚</span>
+  <span class="float-line-text">
+    <span>無料特典プレゼント中</span>
+    <span>LINE登録はこちら</span>
+  </span>
+</a>
 
-<!-- SVGグラデーション定義（パステルブルー×ピンク） -->
-<svg width="0" height="0" style="position:absolute">
-  <defs>
-    <linearGradient id="crackGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#5B9BD3"/>
-      <stop offset="50%" stop-color="#F3A9C7"/>
-      <stop offset="100%" stop-color="#3D7CB0"/>
-    </linearGradient>
-  </defs>
-</svg>
+<!-- ===============================
+     HERO
+     =============================== -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-inner fade-in">
+      <div class="hero-avatar-wrap">
+        <!-- プロフィール写真（後日差し替え） -->
+        <img src="images/hero-profile.jpg"
+             alt="橋田ゆうか"
+             class="hero-avatar"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="hero-avatar-ph photo-placeholder" style="display:none;">
+          <span class="ph-icon">📷</span>
+          <span>写真<br>準備中</span>
+        </div>
+        <span class="hero-badge">社会福祉士</span>
+      </div>
+      <div class="hero-name-block">
+        <p class="hero-name-en">Yuka Hashida</p>
+        <h1 class="hero-name-ja">橋田ゆうか</h1>
+      </div>
+      <p class="hero-tagline">
+        社会福祉士の資格と、自分自身の経験から生まれた視点で、<br>
+        子どもと家族に関わる情報を発信しています。<br>
+        動画から来てくださった方も、ゆっくりのぞいていってください。
+      </p>
 
-<!-- ===================== HERO ===================== -->
-<section class="hero">
-  <div class="texture-top" id="textureTop"></div>
-  <div class="wrap hero-inner">
-    <p class="eyebrow">PROFILE</p>
+      <!-- こんな方へ -->
+      <div class="hero-for-you">
+        <p class="hero-for-you-title">🌸 こんな方に読んでほしい</p>
+        <ul>
+          <li>「うちの子、なんか他の子と違う気がする…」と感じているお母さん</li>
+          <li>不登校・登校しぶりで悩んでいる親御さん</li>
+          <li>発達特性について、専門家に相談してみたいと思っている方</li>
+        </ul>
+      </div>
 
-    <div class="avatar-ring">
-      <!-- 本番(GitHub)では下のsrcを images/hero-profile.jpg に差し替えるとファイルが軽くなります -->
-      <img class="avatar-photo" src="images/hero-profile.jpg" alt="橋田ゆうか">
+      <div class="hero-credentials">
+        <span class="cred-chip">📋 社会福祉士</span>
+        <span class="cred-chip">🎓 発達支援</span>
+        <span class="cred-chip">🏠 オンライン家庭教師</span>
+        <span class="cred-chip">📺 YouTuber</span>
+      </div>
+      <div class="hero-cta-row">
+        <a href="https://lin.ee/URQG6Rp" target="_blank" rel="noopener" class="btn btn-line">
+          💚 LINEで無料特典を受け取る
+        </a>
+        <a href="https://www.youtube.com/@dekoboko_soudan" target="_blank" rel="noopener" class="btn btn-yt">
+          ▶ YouTube を見る
+        </a>
+      </div>
+      <p class="hero-cta-note">登録無料・いつでも解除できます</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     STORY — わたしのこと
+     ★ 信頼構築のため上位に配置
+     =============================== -->
+<section id="story">
+  <div class="blob blob-blue" style="width:200px;height:200px;top:-60px;left:-60px;opacity:0.25;"></div>
+  <div class="blob blob-pink" style="width:140px;height:140px;bottom:-30px;right:-30px;opacity:0.2;"></div>
+
+  <div class="wrap">
+    <div class="section-label fade-in">
+      <span class="en">My Story</span>
+      <h2>わたしのこと</h2>
+      <div class="section-divider"></div>
     </div>
 
-    <h1>橋田ゆうか</h1>
-    <svg class="hero-underline" viewBox="0 0 180 14" id="heroUnderline"></svg>
+    <div class="story-card fade-in">
+      <div class="story-layout">
+        <!-- 自己紹介写真（後日差し替え） -->
+        <div class="story-portrait-wrap">
+          <img src="images/story-photo.jpg"
+               alt="橋田ゆうか"
+               class="story-portrait"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="story-portrait-ph photo-placeholder" style="display:none;">
+            <span class="ph-icon">📷</span>
+            <span>写真<br>準備中</span>
+          </div>
+          <p class="story-photo-caption">橋田ゆうか</p>
+        </div>
 
-    <p class="hero-role">
-      社会福祉士・子ども発達支援専門家
+        <!-- 本文 -->
+        <div class="story-body">
+          <div class="story-text">
+            <p>
+              小学校の頃は、外を走り回ってポケモンして友達がいっぱいいる子でした。
+            </p>
+            <p>
+              中1のゴールデンウィーク前後から、突然学校に行けなくなりました。布団から出られなくなって、部屋にこもってDSをするだけの日が続いて。人と関われない、目を合わせて話せない。学校にも行けない、行きたくない、友達にも会えない。うまく言葉にならないモヤモヤがずっと積み重なって、本当にめちゃくちゃしんどかったです。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 続きの本文（全幅） -->
+      <div class="story-text">
+        <div class="story-highlight">
+          父も母も、まさかこんな私が不登校になるなんて、誰も想像していなかったと思います。
+        </div>
+        <p>
+          高校、大学と進学を機に、少しずつ自分のペースをつかんでいきました。大学在学中から家庭教師として発達の気になる子どもたちと関わるようになりました。授業を通して自分の過去と向き合えたのが、福祉学科・社会福祉士の道を選んでよかったと思う理由のひとつです。
+        </p>
+        <p>
+          だから今、あの時の私と同じ感情を抱えている子たちを一人でも救うためにこの仕事をしています。
+        </p>
+      </div>
+
+      <!-- 活動写真帯 -->
+      <div class="story-photo-row-bottom">
+        <img src="images/kids-study.jpg" alt="授業中の様子" class="story-photo-thumb">
+        <img src="images/kids-play.jpg"  alt="子どもたちと一緒に" class="story-photo-thumb">
+        <img src="images/kids-hands.jpg" alt="一緒に取り組む時間" class="story-photo-thumb">
+      </div>
+
+      <div class="logo-row">
+        <img src="images/tutor-logo.png" alt="家庭教師みっけ">
+        <img src="images/npo-logo.png" alt="NPOロゴ">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     教え子の変化
+     =============================== -->
+<section id="kodomo">
+  <!-- blob decoration -->
+  <div class="blob blob-blue" style="width:200px;height:200px;top:-60px;right:-60px;"></div>
+  <div class="blob blob-pink" style="width:160px;height:160px;bottom:-40px;left:-40px;"></div>
+
+  <div class="wrap">
+    <div class="section-label fade-in">
+      <span class="en">Children's growth</span>
+      <h2>教え子たちの変化</h2>
+      <div class="section-divider"></div>
+    </div>
+    <p class="kodomo-intro fade-in">
+      「うちの子、これでいいのかな…」と心配していたお母さんたちから<br>
+      実際に届いた、うれしいご報告をご紹介します。
     </p>
 
-    <!-- TODO: 自己紹介文はたたき台です。ご本人のトーンに合わせて調整してください -->
-    <p class="hero-copy">
-      社会福祉士の資格と、自分自身の経験から生まれた視点で、子どもと家族に関わる情報を発信しています。動画から来てくださった方も、ゆっくりのぞいていってください。
+    <div class="change-grid">
+
+      <div class="change-card fade-in">
+        <div class="change-meta">
+          <span class="change-icon">✏️</span>
+          <span class="change-tag">学習への取り組み</span>
+        </div>
+        <div class="change-before-after">
+          <span class="change-before">テストをほぼ白紙で提出</span>
+          <span class="change-arrow">→</span>
+          <span class="change-after">自分で書こうとする気持ちが生まれた</span>
+        </div>
+        <p class="change-desc">
+          テスト用紙を前にするといつも固まってしまっていたお子さん。じっくりとペースを大切にした関わりの中で、「やってみよう」という気持ちが芽生え始めました。
+        </p>
+        <p class="change-quote">「先生と一緒だと、不思議とペンが動くって言うんです」（小学5年生・保護者）</p>
+      </div>
+
+      <div class="change-card pink-accent fade-in">
+        <div class="change-meta">
+          <span class="change-icon">⭐</span>
+          <span class="change-tag">やる気・自信</span>
+        </div>
+        <div class="change-before-after">
+          <span class="change-before">すぐあきらめてしまう</span>
+          <span class="change-arrow">→</span>
+          <span class="change-after">「次もやってみたい！」に変化</span>
+        </div>
+        <p class="change-desc">
+          褒められる経験を積み重ねることで、「どうせ無理」が「やったらできるかも」に少しずつ変わっていきました。
+        </p>
+        <p class="change-quote">「家でも自分から机に向かう日が増えてきた」（小学3年生・保護者）</p>
+      </div>
+
+      <div class="change-card fade-in">
+        <div class="change-meta">
+          <span class="change-icon">😊</span>
+          <span class="change-tag">気持ちの切り替え</span>
+        </div>
+        <div class="change-before-after">
+          <span class="change-before">切り替えにとても時間がかかる</span>
+          <span class="change-arrow">→</span>
+          <span class="change-after">旅行もスムーズになった</span>
+        </div>
+        <p class="change-desc">
+          気持ちの切り替えが苦手だったお子さんが、家でも使えるコツを身につけ、外出先でのパニックが減ったとご連絡をいただきました。
+        </p>
+        <p class="change-quote">「旅行先でのぐずりが全然なかった！すごい変化です」（小学2年生・保護者）</p>
+      </div>
+
+      <div class="change-card pink-accent fade-in">
+        <div class="change-meta">
+          <span class="change-icon">🤝</span>
+          <span class="change-tag">友達関係</span>
+        </div>
+        <div class="change-before-after">
+          <span class="change-before">友達と関わるのが苦手</span>
+          <span class="change-arrow">→</span>
+          <span class="change-after">自分から約束ができた！</span>
+        </div>
+        <p class="change-desc">
+          「初めて自分でクラスの子と場所と時間を決めて遊びに行った」という連絡をいただいたときは、一緒に泣きそうになりました。
+        </p>
+        <p class="change-quote">「先生に話せたことで、自信がついてきたと思います」（中学1年生・保護者）</p>
+      </div>
+
+      <div class="change-card fade-in">
+        <div class="change-meta">
+          <span class="change-icon">🌍</span>
+          <span class="change-tag">興味・好奇心</span>
+        </div>
+        <div class="change-before-after">
+          <span class="change-before">英語は完全にシャットアウト</span>
+          <span class="change-arrow">→</span>
+          <span class="change-after">「お、英語って面白いかも」</span>
+        </div>
+        <p class="change-desc">
+          「英語なんて絶対嫌い」と言っていたお子さんが、好きなゲームや動画と結びつけながら学ぶうちに、少しずつ反応が変わってきました。
+        </p>
+        <p class="change-quote">「苦手意識が薄れた気がします。本人も楽しそうで」（小学4年生・保護者）</p>
+      </div>
+
+    </div>
+
+    <p class="kodomo-note fade-in">
+      ※ 個人が特定されないよう、内容を一部変更してご紹介しています。
     </p>
-  </div>
-</section>
 
-
-<!-- ===================== YOUTUBE ===================== -->
-<section class="section" id="sec-youtube">
-  <div class="section-blob blob-blue blob-tr" aria-hidden="true"></div>
-  <div class="section-blob blob-pink blob-bl" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">YOUTUBE</p>
-      <h2>発達でこぼこ相談室</h2>
-      <p>発達障害にまつわるリアルな悩みに、専門家としての視点でお答えしています。</p>
-    </div>
-
-    <!-- 代表動画：バズったYouTube Shortsを埋め込み（縦動画なのでshortsクラスで縦長表示） -->
-    <div class="video-featured placeholder shorts" data-video-id="EMNxLOtvuCo">
-      <div class="video-ph">
-        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#3D7CB0" stroke-width="1.4"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="#3D7CB0"/></svg>
-        <p>ここに代表的な動画が再生埋め込みされます</p>
-        <span>バズった動画のURLを教えてください</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="icon-circle" style="background:rgba(201,82,122,0.14)">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M9 7L17 12L9 17V7Z" fill="#C9527A"/></svg>
-      </div>
-      <p style="font-weight:700; font-size:16px; margin:0 0 6px;">凸凹の悩み、ひとりで抱えなくていい</p>
-      <p style="color:var(--ink-soft); font-size:14px; margin:0 0 4px;">
-        子育て・教育現場で感じる「うちの子、もしかして」に、実体験と専門知識でこたえる動画を配信中。
+    <div class="text-center mt-24 fade-in">
+      <p style="font-size:14px;color:var(--ink-soft);margin-bottom:16px;">
+        「うちの子にも合うかな？」<br>まずはLINEで気軽に相談してみてください。
       </p>
-      <a class="btn btn-primary" href="https://youtube.com/@cfs-mikke" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M9 7L17 12L9 17V7Z" fill="#fff"/></svg>
-        YouTubeで見る・登録する
+      <a href="https://lin.ee/URQG6Rp" target="_blank" rel="noopener" class="btn btn-line">
+        💚 LINEで無料相談してみる
       </a>
     </div>
   </div>
 </section>
 
+<!-- ===============================
+     LINE — 3大特典
+     =============================== -->
+<section id="line">
+  <div class="blob blob-blue" style="width:200px;height:200px;top:-60px;right:-60px;opacity:0.3;"></div>
 
-<!-- ===================== MOND ===================== -->
-<section class="section" id="sec-mond">
-  <div class="section-blob blob-pink blob-tl" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">MOND / 匿名相談</p>
-      <h2>匿名で、なんでも聞けます</h2>
-      <p>名前を出さずに、発達障害や子育ての悩みを相談できる場所です。「読解問題ができるか不安」「手帳取得、迷っています」のような、ちょっとした相談も大歓迎です。</p>
+    <div class="section-label fade-in">
+      <span class="en">LINE Official</span>
+      <h2>公式LINE 無料登録で特典3つ</h2>
+      <div class="section-divider"></div>
     </div>
 
-    <!-- mondのイメージイラスト：実画面のモックアップだと誤って操作されそうなので、
-         「お母さんがスマホから匿名でメッセージを送る」様子をイラストで表現 -->
-    <div class="mond-illust-card">
-      <svg viewBox="0 0 360 230" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="178" cy="206" rx="140" ry="16" fill="#EAF2FA"/>
-        <circle cx="276" cy="44" r="32" fill="#FDEEF4"/>
-        <circle cx="52" cy="38" r="20" fill="#EAF2FA"/>
-        <path d="M118 222 Q112 152 152 134 Q182 120 210 134 Q248 152 242 222 Z" fill="#5B9BD3"/>
-        <rect x="166" y="96" width="22" height="22" rx="8" fill="#F4D9BE"/>
-        <circle cx="177" cy="80" r="33" fill="#F4D9BE"/>
-        <path d="M144 80 Q140 46 177 42 Q214 46 210 80 Q212 112 197 120 Q208 90 195 76 Q189 95 177 95 Q165 95 159 76 Q146 90 157 120 Q142 112 144 80 Z" fill="#B8835A"/>
-        <path d="M149 66 Q159 52 177 52 Q195 52 205 66 Q195 58 177 58 Q159 58 149 66 Z" fill="#A9744F"/>
-        <path d="M165 85 Q169 89 173 85" stroke="#7A5034" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-        <path d="M181 85 Q185 89 189 85" stroke="#7A5034" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-        <path d="M169 97 Q177 103 185 97" stroke="#C9527A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-        <g transform="translate(150,156) rotate(-4)">
-          <rect x="0" y="0" width="56" height="78" rx="14" fill="#FFFFFF" stroke="#C9D7E3" stroke-width="2.5"/>
-          <rect x="9" y="14" width="38" height="5" rx="2.5" fill="#DCE9F4"/>
-          <rect x="9" y="25" width="30" height="5" rx="2.5" fill="#DCE9F4"/>
-          <rect x="9" y="46" width="38" height="16" rx="8" fill="#5B9BD3"/>
-        </g>
-        <path d="M214 118 q16 -8 30 4 q11 9 4 22 q-5 9 -18 8 l-5 9 l-2 -10 q-16 -1 -19 -14 q-3 -11 10 -19 Z" fill="#FFFFFF" stroke="#F3A9C7" stroke-width="2.2"/>
-        <circle cx="227" cy="135" r="2.8" fill="#D9698F"/>
-        <circle cx="236" cy="135" r="2.8" fill="#D9698F"/>
-        <circle cx="245" cy="135" r="2.8" fill="#D9698F"/>
-        <g transform="translate(244,92)">
-          <ellipse cx="13" cy="9" rx="15" ry="10" fill="#8A5BC9"/>
-          <circle cx="7" cy="9" r="2.6" fill="#fff"/>
-          <circle cx="19" cy="9" r="2.6" fill="#fff"/>
-        </g>
-        <path d="M62 96 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3 Z" fill="#F3A9C7"/>
-        <path d="M296 90 l2.4 6 l6 2.4 l-6 2.4 l-2.4 6 l-2.4 -6 l-6 -2.4 l6 -2.4 Z" fill="#5B9BD3"/>
-      </svg>
-      <p class="mond-illust-caption">顔も名前も出さずに、スマホからひとこと送るだけ。</p>
-    </div>
+    <div class="line-card fade-in">
+      <div class="line-icon-big">💚</div>
+      <p class="line-card-title">今すぐ登録で、<br>3つの特典を無料プレゼント！</p>
+      <p class="line-card-sub">子育てがラクになるヒントをお届けします</p>
 
-    <div class="card">
-      <span class="badge">
-        <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><circle cx="12" cy="12" r="9" stroke="#3D7CB0" stroke-width="1.6"/><path d="M12 16.2V16" stroke="#3D7CB0" stroke-width="1.8" stroke-linecap="round"/><path d="M9.6 9.6c0-1.5 1.1-2.6 2.4-2.6s2.4 1 2.4 2.2c0 1.5-2.4 1.7-2.4 3.4" stroke="#3D7CB0" stroke-width="1.6" stroke-linecap="round"/></svg>
-        その質問、動画になるかも
-      </span>
-      <p style="color:var(--ink-soft); font-size:14px; margin:8px 0 4px;">
-        いただいた質問は、YouTube「発達でこぼこ相談室」のテーマになることがあります。あなたの「ちょっと聞きたい」が、誰かを助ける動画に変わるかもしれません。
-      </p>
-      <a class="btn btn-secondary" href="https://mond.how/ja/decoboko_/promotion/cmlrfai4g05swxz30rciusxsu" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.6"/><path d="M9.6 9.6c0-1.5 1.1-2.6 2.4-2.6s2.4 1 2.4 2.2c0 1.5-2.4 1.7-2.4 3.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
-        匿名で質問してみる
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== LINE ===================== -->
-<section class="section" id="sec-line">
-  <div class="section-blob blob-blue blob-midr" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">LINE / 個別相談</p>
-      <h2>もっと深く相談したい方へ</h2>
-      <p>個別のご相談や家庭教師のお問い合わせは、公式LINEから直接どうぞ。</p>
-    </div>
-
-    <div class="card">
-      <div class="icon-circle" style="background:rgba(217,105,143,0.14)">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 4C7 4 3 7.3 3 11.3c0 2.6 1.7 4.9 4.3 6.2-.2.7-.7 2.3-.8 2.7-.1.4.2.4.4.3.2-.1 2.5-1.7 3.5-2.4.5.1 1.1.1 1.6.1 5 0 9-3.3 9-7.3S17 4 12 4Z" stroke="#D9698F" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <div class="tokuten-list">
+        <div class="tokuten-item">
+          <div class="tokuten-num">①</div>
+          <div class="tokuten-text">
+            宿題がラクになる声かけ
+            <small>宿題の時間が毎日バトルになっているお母さんへ</small>
+          </div>
+        </div>
+        <div class="tokuten-item">
+          <div class="tokuten-num">②</div>
+          <div class="tokuten-text">
+            気持ちを切り替える力を育てる声かけ集
+            <small>切り替えが苦手な子も、コツがわかれば変わります</small>
+          </div>
+        </div>
+        <div class="tokuten-item">
+          <div class="tokuten-num">③</div>
+          <div class="tokuten-text">
+            スマホ・ゲームのお約束シート
+            <small>ルールを「一緒に決める」から続くようになる</small>
+          </div>
+        </div>
       </div>
-      <p style="color:var(--ink-soft); font-size:14px; margin:0 0 4px;">
-        「うちの子の場合はどうなんだろう」をじっくり聞きたい方は、こちらからメッセージをどうぞ。
-      </p>
-      <a class="btn btn-secondary" href="https://lin.ee/wnwc1JH" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 4C7 4 3 7.3 3 11.3c0 2.6 1.7 4.9 4.3 6.2-.2.7-.7 2.3-.8 2.7-.1.4.2.4.4.3.2-.1 2.5-1.7 3.5-2.4.5.1 1.1.1 1.6.1 5 0 9-3.3 9-7.3S17 4 12 4Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
-        公式LINEを追加する
+
+      <a href="https://lin.ee/URQG6Rp" target="_blank" rel="noopener" class="btn btn-line" style="font-size:16px;padding:16px 36px;">
+        💚 無料で受け取る（LINE登録）
       </a>
+      <p class="line-note">登録後すぐにお届けします・無料・いつでも解除できます</p>
     </div>
   </div>
 </section>
 
+<!-- ===============================
+     YOUTUBE
+     =============================== -->
+<section id="youtube">
+  <div class="blob blob-pink" style="width:180px;height:180px;top:-50px;left:-50px;"></div>
+  <div class="blob blob-blue" style="width:140px;height:140px;bottom:-30px;right:-30px;"></div>
 
-<!-- ===================== INSTAGRAM ===================== -->
-<section class="section" id="sec-insta">
-  <div class="section-blob blob-pink blob-tl" aria-hidden="true"></div>
-  <div class="section-blob blob-blue blob-br" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">INSTAGRAM</p>
-      <h2>@kateikyoushi_mikke</h2>
-      <p>日々の発信や現場のちょっとした気づきはこちらで。</p>
+    <div class="section-label fade-in">
+      <span class="en">YouTube</span>
+      <h2>動画で「うちの子」のことを知る</h2>
+      <div class="section-divider"></div>
     </div>
 
-    <!--
-      Instagramフィード埋め込み枠
-      SnapWidget / Elfsight 等のウィジェットサービスで取得した
-      埋め込みコード（<iframe>または<script>）をこのdivの中に
-      そのまま貼り付けると、最新の投稿が自動で表示されます。
-      未設定の間はプレースホルダーが表示されます。
-    -->
-    <div class="insta-feed" id="instaFeed">
-      <!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
-      <script src="https://elfsightcdn.com/platform.js" async></script>
+    <div class="yt-inner">
+      <p class="yt-cta-text fade-in">
+        発達特性のある子どもへの<br>
+        <strong>声かけ・対応のコツ</strong>を毎週発信中。<br>
+        「こんな方法があったのか！」と気づきが多い、と好評です。
+      </p>
+
+      <div class="video-featured shorts fade-in"
+           data-video-id="EMNxLOtvuCo"
+           data-title="最新動画">
+        <div class="video-placeholder" style="aspect-ratio:9/16;">
+          <span>動画を読み込み中…</span>
+        </div>
+      </div>
+
+      <div class="text-center fade-in">
+        <a href="https://www.youtube.com/@dekoboko_soudan" target="_blank" rel="noopener" class="btn btn-yt">
+          ▶ チャンネルをフォローする
+        </a>
+        <p style="font-size:12px;color:var(--ink-soft);margin-top:10px;">
+          チャンネル登録で毎週の動画を逃しません
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     MOND（質問箱）
+     =============================== -->
+<section id="mond">
+  <div class="blob blob-pink" style="width:160px;height:160px;bottom:-40px;right:-40px;opacity:0.35;"></div>
+
+  <div class="wrap">
+    <div class="section-label fade-in">
+      <span class="en">Ask Me</span>
+      <h2>匿名で質問できます</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="mond-card fade-in">
+      <div class="mond-emoji">💬</div>
+      <p class="mond-title">
+        「こんなこと聞いていいのかな…」<br>
+        でも、大丈夫。匿名で聞けます。
+      </p>
+      <p class="mond-desc">
+        子どものこと、学校のこと、自分の気持ちのこと。<br>
+        「誰かに話したいけど、誰に話せばいいかわからない」<br>
+        そんな気持ち、まずはここに投げかけてみてください。
+      </p>
+      <a href="https://mond.how/ja/hashida_yuka" target="_blank" rel="noopener" class="btn btn-outline">
+        💬 匿名で質問してみる（mond）
+      </a>
+      <p class="mond-url">https://mond.how/ja/hashida_yuka</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     INSTAGRAM
+     =============================== -->
+<section id="insta">
+  <div class="blob blob-pink" style="width:180px;height:180px;top:-50px;right:-50px;opacity:0.3;"></div>
+
+  <div class="wrap">
+    <div class="section-label fade-in">
+      <span class="en">Instagram</span>
+      <h2>日々のこと、発信中</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="insta-handle fade-in">
+      <a href="https://www.instagram.com/dekoboko_soudan" target="_blank" rel="noopener">
+        📸 @dekoboko_soudan
+      </a>
+    </div>
+
+    <div class="fade-in">
+      <!-- Elfsight Instagram Feed -->
+      <script src="https://static.elfsight.com/platform/platform.js" async></script>
       <div class="elfsight-app-8462c4eb-23b8-41f8-bf2c-34312bb43c46" data-elfsight-app-lazy></div>
     </div>
-
-    <div class="card">
-      <div class="icon-circle" style="background:rgba(91,155,211,0.14)">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="5" stroke="#5B9BD3" stroke-width="1.6"/><circle cx="12" cy="12" r="3.6" stroke="#5B9BD3" stroke-width="1.6"/><circle cx="16.4" cy="7.6" r="0.9" fill="#5B9BD3"/></svg>
-      </div>
-      <a class="btn btn-primary" href="https://www.instagram.com/kateikyoushi_mikke" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="5" stroke="#fff" stroke-width="1.6"/><circle cx="12" cy="12" r="3.6" stroke="#fff" stroke-width="1.6"/><circle cx="16.4" cy="7.6" r="0.9" fill="#fff"/></svg>
-        Instagramを見る
-      </a>
-    </div>
   </div>
 </section>
 
-
-<!-- ===================== STORY（プロフィール詳細） ===================== -->
-<section class="section" id="sec-story">
-  <div class="section-blob blob-blue blob-tr" aria-hidden="true"></div>
-  <div class="section-blob blob-pink blob-midl" aria-hidden="true"></div>
+<!-- ===============================
+     FOOTER / CTA
+     =============================== -->
+<section id="footer-cta">
   <div class="wrap">
-    <!-- 本番(GitHub)では下のsrcを images/story-photo.jpg に差し替えるとファイルが軽くなります -->
-    <div class="story-photo">
-      <img src="images/story-photo.jpg" alt="生徒さんとハイタッチする橋田ゆうか">
-    </div>
-    <div class="section-head">
-      <p class="eyebrow">STORY</p>
-      <h2>なぜ、この仕事をしているのか</h2>
-    </div>
+    <div class="footer-cta-inner fade-in">
+      <img src="images/tutor-logo.png" alt="家庭教師みっけ" class="footer-logo">
 
-    <div class="story-card">
-      <p>中学1年生の夏、私は突然学校に通えなくなりました。「自分の居場所がない」「どう生きていけばいいのか分からない」——そんな感覚と、ずっと向き合っていました。</p>
-      <p>大学で出会った児童自立支援施設での実習をきっかけに、本気で社会福祉士を目指すように。今は家庭教師という仕事を通して、福祉と教育のあいだで、制度の狭間にいるご家庭を支える活動を続けています。</p>
-
-      <button class="story-toggle" id="storyToggle" aria-expanded="false" aria-controls="storyMore" type="button">
-        <span class="label-more">もっと知る（生い立ちと、この仕事を選んだ理由）</span>
-        <span class="label-less">閉じる</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-
-      <!--
-        編集メモ（橋田さんへ）：
-        いただいた原稿のうち、以下2点は公開版から外して書いています。ご本人の判断で戻す場合は追記してください。
-        ・服薬量の具体的な数字（1日9錠など）
-        ・お母様がキッチンで包丁を持ったまま立ち尽くしていた場面の描写
-        →「母も限界だったと思う」という主旨は残し、描写の生々しさだけを抑えています。
-      -->
-      <div class="story-more" id="storyMore">
-        <p>小学生の頃は学校が大好きな、活発な子どもでした。けれど中学1年生の夏に突然学校へ行けなくなり、心療内科に通いながら中学2年生の1年間を病棟で過ごしました。</p>
-        <p>高校は三重県の全寮制高校へ進学。親元を離れ、自由な環境で過ごした時間が「自分で生きていく感覚」を少しずつ取り戻すきっかけになりました。</p>
-        <p>大学では助産師を目指して看護学科に進学しましたが、再び大学に通えなくなり、母の勧めで福祉学科へ転向します。</p>
-        <p>転機は児童自立支援施設での実習です。虐待やネグレクトを経験した子どもたちと出会い、実習最終日に「ゆうか先生のおかげで、人生変わりました」と言われ、初めて「この仕事をしたい」と心から思えました。</p>
-        <p>国家試験に合格後、先輩に勧められて始めたのが家庭教師の仕事です。出会う子どもたちの多くが発達特性や生きづらさを抱えていて、診断はあっても支援につながれない"グレーゾーン"の家庭の存在に気づいていきました。それはかつての私自身や、弟を育てながら必死だった母の姿とも重なります。</p>
-        <p>だからこそ私は、福祉制度だけに頼らない民間教育という立場で、制度の外側にいるご家庭にも支援を届けたいと考えています。海外の特別支援教育も学びながら、誰もが公平に機会を得られる"ノーマライゼーション"の実現を目指しています。</p>
+      <div class="footer-cta-text">
+        <h3>オンライン家庭教師、はじめてみませんか？</h3>
+        <p>
+          発達特性を持つお子さんに特化した、<br>
+          完全オンラインの個別指導サービスです。<br>
+          まずはLINEから気軽にご相談ください。
+        </p>
       </div>
+
+      <a href="https://lin.ee/URQG6Rp" target="_blank" rel="noopener" class="btn btn-line">
+        💚 LINEでまず相談する（無料）
+      </a>
+
+      <div class="footer-divider"></div>
+
+      <nav class="footer-nav">
+        <a href="https://www.youtube.com/@dekoboko_soudan" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/dekoboko_soudan" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://mond.how/ja/hashida_yuka" target="_blank" rel="noopener">質問箱（mond）</a>
+        <a href="https://lin.ee/URQG6Rp" target="_blank" rel="noopener">公式LINE</a>
+      </nav>
+
+      <p class="footer-copy">© 2024 橋田ゆうか. All rights reserved.</p>
     </div>
   </div>
 </section>
 
-
-<!-- ===================== 家庭教師HP（補足） ===================== -->
-<div class="wrap footer-note">
-  <div class="card">
-    <span class="status-pill">現在、新規募集は停止中です</span>
-    <!-- 本番(GitHub)では下のsrcを images/tutor-logo.png に差し替えるとファイルが軽くなります -->
-    <img class="tutor-logo-img" src="images/tutor-logo.png" alt="発達にかたよりのある子ども専門 家庭教師みっけ">
-    <p>サービス詳細や今後の募集再開のお知らせは、家庭教師HPにてご案内しています。</p>
-    <a class="btn btn-ghost" href="https://www.kateikyoushi-mikke.com/" target="_blank" rel="noopener">
-      家庭教師HPを見る
-    </a>
-  </div>
-</div>
-
-<footer>
-  <div class="wrap footer-inner">
-    <!-- 本番(GitHub)では下のsrcを images/npo-logo.png に差し替えるとファイルが軽くなります -->
-    <img class="npo-logo-img" src="images/npo-logo.png" alt="一般社団法人こども家庭サポートみっけ">
-    <p>© 橋田ゆうか / 一般社団法人こども家庭サポートみっけ</p>
-  </div>
-</footer>
-
-<!-- スクロール追従CTA：常時、YouTube登録とmond匿名相談に誘導 -->
-<div class="sticky-cta" id="stickyCta">
-  <a class="sticky-cta-btn primary" href="https://youtube.com/@cfs-mikke" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="none"><path d="M9 7L17 12L9 17V7Z" fill="#fff"/></svg>
-    YouTube登録
-  </a>
-  <a class="sticky-cta-btn secondary" href="https://mond.how/ja/decoboko_/promotion/cmlrfai4g05swxz30rciusxsu" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.6"/><path d="M9.6 9.6c0-1.5 1.1-2.6 2.4-2.6s2.4 1 2.4 2.2c0 1.5-2.4 1.7-2.4 3.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
-    匿名で相談
-  </a>
-</div>
-
+<!-- ===== SCRIPTS ===== -->
 <script>
-  // ===========================================================
-  // 「でこぼこ」を視覚化する継ぎ目ライン（パステルのリボン風）を生成
-  // ===========================================================
-  function craftPath(width, height, segments, jaggedness){
-    let d = `M0,${(height/2).toFixed(1)}`;
-    const step = width / segments;
-    for(let i = 1; i <= segments; i++){
-      const x = step * i;
-      const y = height/2 + (Math.random() - 0.5) * height * jaggedness;
-      d += ` L${x.toFixed(1)},${y.toFixed(1)}`;
+// YouTube embed
+document.querySelectorAll('[data-video-id]').forEach(el => {
+  const id = el.dataset.videoId;
+  if (id && id !== 'VIDEO_ID_HERE') {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
+    iframe.title = el.dataset.title || '動画';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.loading = 'lazy';
+    el.innerHTML = '';
+    el.appendChild(iframe);
+  }
+});
+
+// Scroll fade-in
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
     }
-    return d;
-  }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  function renderCrack(svgEl){
-    const w = 640, h = 28;
-    const d = craftPath(w, h, 9, 0.85);
-    svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    svgEl.innerHTML = `<path d="${d}" />`;
-
-    // リボンの結び目のような小さな粒（2〜3個）
-    const nodeCount = 2 + Math.floor(Math.random()*2);
-    for(let i=0; i<nodeCount; i++){
-      const cx = (w/(nodeCount+1)) * (i+1) + (Math.random()-0.5)*40;
-      const cy = h/2 + (Math.random()-0.5)*h*0.6;
-      const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
-      circle.setAttribute('cx', cx);
-      circle.setAttribute('cy', cy);
-      circle.setAttribute('r', 2.4);
-      svgEl.appendChild(circle);
-    }
-  }
-
-  document.querySelectorAll('.crack-divider svg').forEach(renderCrack);
-
-  // スクロール追従CTA：ヒーローが画面外に出たら表示する
-  const heroEl = document.querySelector('.hero');
-  const stickyCta = document.getElementById('stickyCta');
-  if(heroEl && stickyCta && 'IntersectionObserver' in window){
-    const heroObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        stickyCta.classList.toggle('is-visible', !entry.isIntersecting);
-      });
-    }, { threshold: 0 });
-    heroObserver.observe(heroEl);
-  }
-
-  // STORYセクションの「もっと知る」開閉
-  const storyToggle = document.getElementById('storyToggle');
-  const storyMore = document.getElementById('storyMore');
-  if(storyToggle && storyMore){
-    storyToggle.addEventListener('click', ()=>{
-      const willOpen = !storyMore.classList.contains('is-open');
-      storyMore.classList.toggle('is-open', willOpen);
-      storyToggle.classList.toggle('is-open', willOpen);
-      storyToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+// Floating LINE button — show after scrolling past hero
+const floatLine = document.getElementById('floatLine');
+const hero = document.getElementById('hero');
+if (floatLine && hero) {
+  const heroObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) {
+        floatLine.classList.add('show');
+      } else {
+        floatLine.classList.remove('show');
+      }
     });
-  }
-
-  // ===========================================================
-  // 動画ID差し替えロジック
-  // data-video-id="VIDEO_ID_HERE" の部分に実際のYouTube動画IDを
-  // 入れるだけで、自動的に埋め込み再生 / サムネイル表示に切り替わります
-  // 例: data-video-id="dQw4w9WgXcQ"
-  // ===========================================================
-  document.querySelectorAll('.video-featured').forEach(frame=>{
-    const id = frame.getAttribute('data-video-id');
-    if(id && id !== 'VIDEO_ID_HERE'){
-      frame.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}" title="代表動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-      frame.classList.remove('placeholder');
-    }
-  });
-
-  document.querySelectorAll('.video-thumb').forEach(thumb=>{
-    const id = thumb.getAttribute('data-video-id');
-    if(id && id !== 'VIDEO_ID_HERE'){
-      thumb.style.backgroundImage = `url(https://img.youtube.com/vi/${id}/hqdefault.jpg)`;
-      thumb.classList.remove('placeholder');
-      thumb.href = `https://www.youtube.com/watch?v=${id}`;
-      thumb.innerHTML = '';
-    }
-  });
-
-  // ヒーロー下の小さな凸凹アンダーライン
-  const underline = document.getElementById('heroUnderline');
-  if(underline){
-    const d = craftPath(180, 14, 7, 0.7);
-    underline.innerHTML = `<path d="${d}" fill="none" stroke="url(#crackGradient)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`;
-  }
-
-  // ヒーロー背景の控えめな凸凹テクスチャ
-  const topTexture = document.getElementById('textureTop');
-  if(topTexture){
-    let lines = '';
-    for(let i=0;i<4;i++){
-      const y = 40 + i*55;
-      const d = craftPath(700, 30, 14, 1);
-      lines += `<path d="${d}" transform="translate(-30,${y})" fill="none" stroke="#5B9BD3" stroke-width="1" stroke-linecap="round" opacity="${0.06 - i*0.01}"/>`;
-    }
-    topTexture.innerHTML = `<svg viewBox="0 0 640 280" preserveAspectRatio="none">${lines}</svg>`;
-  }
-
-  // ===========================================================
-  // スクロールで各セクションをふわっと表示（安全装置つき）
-  // IntersectionObserverが使えない/失敗した場合でも、
-  // セクションは最初から表示された状態のままになります。
-  // ===========================================================
-  try{
-    if('IntersectionObserver' in window){
-      const observer = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.section').forEach(sec => {
-        sec.classList.add('pre-reveal');
-        observer.observe(sec);
-      });
-
-      // 念のため：2秒経っても表示されないセクションは強制的に表示する
-      setTimeout(()=>{
-        document.querySelectorAll('.section.pre-reveal:not(.is-visible)').forEach(sec=>{
-          sec.classList.add('is-visible');
-        });
-      }, 2000);
-    }
-  }catch(e){
-    document.querySelectorAll('.section').forEach(sec => sec.classList.add('is-visible'));
-  }
+  }, { threshold: 0.1 });
+  heroObserver.observe(hero);
+}
 </script>
-
 </body>
 </html>
