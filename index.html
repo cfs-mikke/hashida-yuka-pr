@@ -401,17 +401,29 @@ section { position: relative; overflow: hidden; }
   flex: 1;
   min-width: 0;
 }
-/* On small screens: stack vertically */
-@media (max-width: 520px) {
-  .story-layout {
-    flex-direction: column;
-    align-items: center;
-  }
-  .story-portrait-wrap { width: 100%; }
-  .story-portrait, .story-portrait-ph {
-    width: 100%;
-    height: 200px;
-  }
+/* Story portrait — right side, compact */
+.story-portrait-wrap {
+  flex-shrink: 0;
+  width: 110px;
+  order: 2; /* 右側に配置 */
+}
+.story-portrait {
+  width: 110px;
+  height: 148px;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: top;
+  box-shadow: 0 4px 18px rgba(91,155,211,0.18);
+  display: block;
+}
+.story-portrait-ph {
+  width: 110px;
+  height: 148px;
+}
+/* On small screens: keep side by side, smaller */
+@media (max-width: 400px) {
+  .story-portrait-wrap { width: 88px; }
+  .story-portrait, .story-portrait-ph { width: 88px; height: 120px; }
 }
 .story-text {
   font-size: 14.5px;
@@ -437,13 +449,16 @@ section { position: relative; overflow: hidden; }
   gap: 12px;
   margin-top: 24px;
   margin-bottom: 8px;
+  width: 100%;
 }
 .story-photo-thumb {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   height: 100px;
   border-radius: 12px;
   object-fit: cover;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  display: block;
 }
 .story-photo-thumb-ph {
   flex: 1;
@@ -579,6 +594,27 @@ section { position: relative; overflow: hidden; }
   margin-top: 24px;
   font-size: 12px;
   color: var(--ink-soft);
+}
+
+/* ── カードイラスト ── */
+.change-illust {
+  float: right;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0 0 10px 14px;
+  opacity: 0.93;
+  flex-shrink: 0;
+}
+.tokuten-illust {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  align-self: center;
+  margin-left: auto;
 }
 
 /* ===============================
@@ -793,6 +829,27 @@ section { position: relative; overflow: hidden; }
   align-items: center;
   gap: 20px;
 }
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 28px;
+  border-radius: 100px;
+  border: 2px solid rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.85);
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color .2s, color .2s, background .2s;
+  font-family: inherit;
+}
+.btn-outline-white:hover {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+}
 .footer-logo {
   height: 52px;
   object-fit: contain;
@@ -932,7 +989,19 @@ section { position: relative; overflow: hidden; }
 
     <div class="story-card fade-in">
       <div class="story-layout">
-        <!-- 自己紹介写真（後日差し替え） -->
+        <!-- 本文（左） -->
+        <div class="story-body" style="order:1;">
+          <div class="story-text">
+            <p>
+              小学校の頃は、外を走り回ってポケモンして友達がいっぱいいる子でした。
+            </p>
+            <p>
+              中1のゴールデンウィーク前後から、突然学校に行けなくなりました。布団から出られなくなって、部屋にこもってDSをするだけの日が続いて。人と関われない、目を合わせて話せない。学校にも行けない、行きたくない、友達にも会えない。うまく言葉にならないモヤモヤがずっと積み重なって、本当にめちゃくちゃしんどかったです。
+            </p>
+          </div>
+        </div>
+
+        <!-- 自己紹介写真（右） -->
         <div class="story-portrait-wrap">
           <img src="images/story-photo.jpg"
                alt="橋田ゆうか"
@@ -943,18 +1012,6 @@ section { position: relative; overflow: hidden; }
             <span>写真<br>準備中</span>
           </div>
           <p class="story-photo-caption">橋田ゆうか</p>
-        </div>
-
-        <!-- 本文 -->
-        <div class="story-body">
-          <div class="story-text">
-            <p>
-              小学校の頃は、外を走り回ってポケモンして友達がいっぱいいる子でした。
-            </p>
-            <p>
-              中1のゴールデンウィーク前後から、突然学校に行けなくなりました。布団から出られなくなって、部屋にこもってDSをするだけの日が続いて。人と関われない、目を合わせて話せない。学校にも行けない、行きたくない、友達にも会えない。うまく言葉にならないモヤモヤがずっと積み重なって、本当にめちゃくちゃしんどかったです。
-            </p>
-          </div>
         </div>
       </div>
 
@@ -1008,6 +1065,7 @@ section { position: relative; overflow: hidden; }
     <div class="change-grid">
 
       <div class="change-card fade-in">
+        <img src="images/illust-study.png" alt="学習イラスト" class="change-illust">
         <div class="change-meta">
           <span class="change-icon">✏️</span>
           <span class="change-tag">学習への取り組み</span>
@@ -1024,6 +1082,7 @@ section { position: relative; overflow: hidden; }
       </div>
 
       <div class="change-card pink-accent fade-in">
+        <img src="images/illust-confidence.png" alt="やる気イラスト" class="change-illust">
         <div class="change-meta">
           <span class="change-icon">⭐</span>
           <span class="change-tag">やる気・自信</span>
@@ -1040,6 +1099,7 @@ section { position: relative; overflow: hidden; }
       </div>
 
       <div class="change-card fade-in">
+        <img src="images/illust-calm.png" alt="気持ちの切り替えイラスト" class="change-illust">
         <div class="change-meta">
           <span class="change-icon">😊</span>
           <span class="change-tag">気持ちの切り替え</span>
@@ -1056,6 +1116,7 @@ section { position: relative; overflow: hidden; }
       </div>
 
       <div class="change-card pink-accent fade-in">
+        <img src="images/illust-friends.png" alt="友達関係イラスト" class="change-illust">
         <div class="change-meta">
           <span class="change-icon">🤝</span>
           <span class="change-tag">友達関係</span>
@@ -1072,6 +1133,7 @@ section { position: relative; overflow: hidden; }
       </div>
 
       <div class="change-card fade-in">
+        <img src="images/illust-curious.png" alt="興味・好奇心イラスト" class="change-illust">
         <div class="change-meta">
           <span class="change-icon">🌍</span>
           <span class="change-tag">興味・好奇心</span>
@@ -1129,6 +1191,7 @@ section { position: relative; overflow: hidden; }
             宿題がラクになる声かけ
             <small>宿題の時間が毎日バトルになっているお母さんへ</small>
           </div>
+          <img src="images/illust-homework.png" alt="宿題イラスト" class="tokuten-illust">
         </div>
         <div class="tokuten-item">
           <div class="tokuten-num">②</div>
@@ -1136,6 +1199,7 @@ section { position: relative; overflow: hidden; }
             気持ちを切り替える力を育てる声かけ集
             <small>切り替えが苦手な子も、コツがわかれば変わります</small>
           </div>
+          <img src="images/illust-emotion.png" alt="気持ち切り替えイラスト" class="tokuten-illust">
         </div>
         <div class="tokuten-item">
           <div class="tokuten-num">③</div>
@@ -1143,6 +1207,7 @@ section { position: relative; overflow: hidden; }
             スマホ・ゲームのお約束シート
             <small>ルールを「一緒に決める」から続くようになる</small>
           </div>
+          <img src="images/illust-rules.png" alt="スマホルールイラスト" class="tokuten-illust">
         </div>
       </div>
 
@@ -1271,8 +1336,8 @@ section { position: relative; overflow: hidden; }
         </p>
       </div>
 
-      <a href="https://lin.ee/URQG6Rp" target="_blank" rel="noopener" class="btn btn-line">
-        💚 LINEでまず相談する（無料）
+      <a href="https://lin.ee/qmz92ma" target="_blank" rel="noopener" class="btn btn-outline-white">
+        💬 LINEで詳しく見る（家庭教師みっけ）
       </a>
 
       <div class="footer-divider"></div>
